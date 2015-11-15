@@ -1,0 +1,39 @@
+body {
+  font: 100% "Palanquin", Helvetica, sans-serif;
+  font-weight: 300;
+  background: #f9e3e3;
+  color: #241b3c; }
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400; }
+
+.primary-color {
+  color: #241b3c; }
+
+.secondary-color {
+  color: #62121e; }
+
+.masthead {
+  font-size: 350%;
+  text-shadow: 1px 1px 0 white; }
+
+.navbar {
+  background: #241b3c;
+  border-radius: 0;
+  margin: 0 0 2rem;
+  padding: 0; }
+  .navbar li {
+    padding: 0; }
+  .navbar a {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    transition: 0.2s all; }
+    .navbar a:hover, .navbar a:active {
+      background: #f9e3e3;
+      color: #241b3c;
+      transition: 0.2s all; }
+
+/*# sourceMappingURL=indieweekend3.css.map */

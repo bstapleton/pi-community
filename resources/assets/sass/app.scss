@@ -1,0 +1,400 @@
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+/* Colour Utilities */
+
+$brand-primary: #e9573f;
+$brand: $brand-primary;
+$brand-hover: #fc6e51;
+$darkest: #111;
+$dark-grey: #363636;
+$mid-grey: #666;
+$light-grey: #ddd;
+$lightest: #fff;
+$success: #00a651;
+$failure: #c72d2a;
+
+/* Typography */
+
+$path-fonts: '/fonts/';
+
+@font-face {
+  font-family: 'adam';
+  src: url('#{$path-fonts}adam.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'opensans_regular';
+  src: url('#{$path-fonts}opensans_regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'opensans_bold';
+  src: url('#{$path-fonts}opensans_bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'opensans_italic';
+  src: url('#{$path-fonts}opensans_italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'opensans_bolditalic';
+  src: url('#{$path-fonts}opensans_bolditalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+$websafe: Helvetica, Arial, sans-serif;
+
+@mixin copy($face) {
+  font-family: $face, $websafe;
+}
+
+$images: '../images/';
+
+/* General Utilities */
+
+.circle {
+  border-radius: 50%;
+}
+
+.rounded {
+  border-radius: 0.5em;
+}
+
+.border-thin {
+  border-width: 0.1em;
+}
+
+.border-thick {
+  border-width: 1em;
+}
+
+/* Base-level Tags etc */
+
+strong {
+  @include copy('opensans_bold');
+
+  em {
+    @include copy('opensans_bolditalic');
+  }
+}
+
+em {
+  @include copy('opensans_italic');
+
+  strong {
+    @include copy('opensans_bolditalic');
+  }
+}
+
+h1,
+h2,
+h3 {
+  @include copy('adam');
+}
+
+h1 {
+  font-size: 3em;
+  line-height: 3em;
+}
+
+h2 {
+  font-size: 2.3em;
+  line-height: 2.3em;
+}
+
+h3 {
+  font-size: 2em;
+  line-height: 1em;
+}
+
+a {
+  color: $brand-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: inherit;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: #dacdcd url('#{$images}bg-page.jpg') center top no-repeat;
+  @include copy('opensans_regular');
+}
+
+.vitals-stub {
+  padding-top: 20px;
+  margin-left: 120px;
+  padding-left: 1em;
+
+  .user-name {
+    font-size: 40px;
+    line-height: 40px;
+    @include copy('adam');
+    color: $mid-grey;
+  }
+
+  .user-class {
+    color: $dark-grey;
+    margin: 0;
+  }
+
+  .influence-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      float: left;
+      margin-right: 0.3em;
+    }
+  }
+}
+
+.brand {
+  @include copy('adam');
+  letter-spacing: 15px;
+  text-align: right;
+  padding-top: 20px;
+  position: relative;
+
+  .brand-name {
+    font-size: 60px;
+    line-height: 60px;
+    padding-right: 57px;
+    color: $brand-primary;
+    display: block;
+  }
+
+  .logo {
+    position: absolute;
+    right: 7px;
+    top: 20px;
+  }
+
+  .tagline {
+    font-size: 18px;
+    color: $mid-grey;
+    letter-spacing: 3px;
+  }
+}
+
+.site-navbar {
+  background: $dark-grey;
+  font-size: 1.1em;
+
+  .site-navigation {
+    padding-left: 120px;
+  }
+
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-transform: uppercase;
+    color: $lightest;
+    display: block;
+    padding: 0.6em 1em;
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+      background: $brand-primary;
+    }
+  }
+}
+
+.user-stub {
+  background-image: linear-gradient(-270deg, $success 50%, rgba(255,255,255,0) 50%, rgba(255,255,255,0)), linear-gradient(-236deg, $success 50%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.5));
+  padding: 10px;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 10px;
+
+  .avatar-container {
+    background: $lightest;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    display: block;
+  }
+}
+
+.site-footer {
+  background: $dark-grey;
+  color: $light-grey;
+  padding: 2em 0 3em;
+
+  li {
+    margin-bottom: 0.3em;
+    font-size: 0.9em;
+  }
+
+  a {
+    color: $light-grey;
+    display: inline-block;
+    padding: 0.2em 0.2em 0.2em 0;
+
+    &:hover {
+      text-decoration: none;
+      color: $brand-hover;
+    }
+  }
+}
+
+.field-group {
+  margin-bottom: 0.5em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea {
+  outline: none;
+  display: block;
+  border: 1px solid $dark-grey;
+  transition: border 0.2s;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $brand-hover;
+    transition: border 0.2s;
+  }
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+input[type="submit"],
+button {
+  padding: 0.6em 1em;
+  box-shadow: none;
+}
+
+input[type="submit"],
+button {
+  border-radius: 0.2em;
+  border: none;
+}
+
+.btn-post {
+  color: $lightest;
+  background: $brand;
+
+  &:hover,
+  &:active {
+    color: $lightest;
+    background: $brand-hover;
+  }
+}
+
+.block {
+  margin-bottom: 2em;
+}
+
+.block-heading,
+.block-content,
+.block-footer{
+  background: $lightest;
+  padding: 1em;
+
+  &.transparent {
+    background: rgba(255,255,255,0.5);
+  }
+}
+
+.block-heading {
+  border-top: 0.4em solid $brand-primary;
+  border-bottom: 1px solid $light-grey;
+  margin: 0;
+  padding-bottom: 0.6em;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.block-footer {
+  border-top: 1px solid $light-grey;
+  color: $mid-grey;
+  text-align: right;
+}
+
+.nav-block {
+  .block-heading,
+  .block-footer {
+    background: $brand;
+    color: $lightest;
+    border-bottom: none;
+  }
+
+  .block-heading {
+    border-radius: 3px 3px 0 0;
+  }
+
+  .block-footer {
+    border-radius: 0 0 3px 3px;
+    border-top: none;
+  }
+
+  .block-content {
+    padding: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      a {
+        display: block;
+        padding: 1.5em 1em;
+        transition: 0.2s background;
+
+        &:hover,
+        &:active {
+          background: $brand-hover;
+          color: $lightest;
+          text-decoration: none;
+          transition: 0.2s background;
+        }
+
+        i {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+.site-header {
+  margin-bottom: 2em;
+}

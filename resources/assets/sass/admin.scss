@@ -1,0 +1,49 @@
+$font-stack: 'Open Sans', Helvetica, sans-serif;
+$primary-color: #241b3c;
+$secondary-color: #62121e;
+$primary-bg: #f1f1f1;
+$body-color: #222;
+$darkest: #000;
+$lightest: #fff;
+
+body {
+    font: 100% $font-stack;
+    font-weight: 400;
+    background: $primary-bg;
+    color: $body-color;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 400;
+}
+
+.primary-color {
+    color: $primary-color;
+}
+
+.secondary-color {
+    color: $secondary-color;
+}
+
+.admin-sidebar {
+    background: $primary-color;
+    height: 100%;
+    border-right: 1px solid $darkest;
+
+    a {
+        color: $lightest;
+        display: block;
+        padding: 1rem;
+        border-bottom: 1px solid lighten($primary-color, 10%);
+
+        &:hover,
+        &:active {
+            background: $secondary-color;
+            color: $lightest;
+            text-decoration: none;
+        }
+    }
+}
