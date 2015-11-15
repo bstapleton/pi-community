@@ -50,18 +50,35 @@ class UserController extends Controller
     }
 
     /**
-     * Updates the user's node in the graph
+     * Updates the specified User node in the graph
      *
-     * @param $id Node ID to match when saving a user
+     * @param $id Node ID to match when saving a User
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id)
     {
+        // Get the request params
         $userUpdate = Request::all();
+
+        // Find the matching User node
         $user = User::find($id);
+
+        // Find the matching Group with which this User is associated
+        $newGroup = Group::find($userUpdate['group']);
+
+        // If we've changed the user group, then detach the existing group
+        // relation and create a new relation in its place.
+        if ($newGroup['id'] != $user->group->id) {
+            $user->group()->detach();
+            $user->group()->save($newGroup);
+        }
+
+        // Update the User details
         $user->update($userUpdate);
 
-        return redirect()->back();
+        return redirect()
+            ->action('Admin\UserController@index')
+            ->with('status', 'User has been updated.');
     }
 
     /**
