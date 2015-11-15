@@ -7,7 +7,10 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-
+/**
+ * Class ArticleController
+ * @package app\Http\Controllers\Admin
+ */
 class ArticleController extends Controller
 {
     protected $request;
@@ -17,6 +20,11 @@ class ArticleController extends Controller
         $this->request = $request;
     }
 
+    /**
+     * Returns a view of all articles in the system
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $articles = array();
@@ -29,6 +37,11 @@ class ArticleController extends Controller
         return view('admin.articles.index', compact('articles'));
     }
 
+    /**
+     * Returns a view for creating a new article
+     *
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('admin.articles.create', compact('article'));
@@ -45,8 +58,13 @@ class ArticleController extends Controller
         return view('admin.articles.edit', compact('article'));
     }
 
-    public function save()
+    /**
+     * Stores the new article in the graph
+     *
+     * @return \Illuminate\View\View
+     */
+    public function store()
     {
-        return view('admin.articles.save', compact('article'));
+        return view('admin.articles.store', compact('article'));
     }
 }
