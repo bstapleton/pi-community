@@ -1,0 +1,2 @@
+LOAD CSV WITH HEADERS FROM "file:///countries.csv" AS csvLine
+CREATE (c:Country { name: csvLine.name, citizenship: csvLine.citizenship, full_name: csvLine.full_name, flag: csvLine.flag })
