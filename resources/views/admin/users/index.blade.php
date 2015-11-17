@@ -33,7 +33,9 @@
                         <a href="{{ route('admin.users.edit', $user->id) }}">{{ $user->name }}</a>
                     </td>
                     <td>
-                        {{ $user->group->name }}
+                        @if ($user->group)
+                            {{ $user->group->name }}
+                        @endif
                     </td>
                     <td>
                         {{ $user->created_at }}
