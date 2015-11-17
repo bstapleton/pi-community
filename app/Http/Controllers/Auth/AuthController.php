@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Group;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -59,10 +60,28 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // Create the user.
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        // we want to assign new users to the 'unauthenticated' user group, but
+        // the find() method only works for ids, which could change during data
+        // migration. This is a messy, but working work-around to map new users
+        // to the correct group upon sign-up.
+        $groups = Group::all(['id', 'name']);
+        foreach ($groups as $group) {
+            if ('Unauthenticated' == $group->name) {
+                $id = $group->id;
+            }
+        }
+
+        // Create the relation for the user to the correct group.
+        $defaultGroup = Group::find($id);
+        $user->group()->attach($defaultGroup);
+
+        return $user;
     }
 }
