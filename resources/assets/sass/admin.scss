@@ -1,10 +1,13 @@
 $font-stack: 'Open Sans', Helvetica, sans-serif;
 $primary-color: #241b3c;
 $secondary-color: #62121e;
-$primary-bg: #f1f1f1;
 $body-color: #222;
-$darkest: #000;
-$lightest: #fff;
+$darkest: #222;
+$lightest: #f1f1f1;
+$primary-bg: $lightest;
+$border-colour: #ccc;
+$even-bg: #e3e3e3;
+$odd-bg: $lightest;
 
 body {
     font: 100% $font-stack;
@@ -44,6 +47,44 @@ h4 {
             background: $secondary-color;
             color: $lightest;
             text-decoration: none;
+        }
+    }
+}
+
+.widget {
+    border: 1px solid $border-colour;
+    border-radius: 4px;
+
+    .widget-row {
+        clear: both;
+
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        &:nth-child(even) {
+            .widget-left,
+            .widget-right {
+                background: $even-bg;
+            }
+        }
+
+        .widget-left,
+        .widget-right {
+            padding: 0.5em 0 0.5em 0.7em;
+        }
+
+        .widget-left {
+            width: 30%;
+            float: left;
+        }
+
+        .widget-right {
+            width: 70%;
+            float: right;
+            border-left: 1px solid $border-colour;
         }
     }
 }

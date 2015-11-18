@@ -7,32 +7,34 @@
 </head>
 
 <body>
-<div class="row">
-    @section('admin-sidebar')
-        <div class="col-sm-4 col-md-3">
-            <aside class="admin-sidebar">
-                <nav>
-                    <ul class="list-unstyled">
-                        <li><a href="/admin">Dashboard</a></li>
-                        <li><a href="/admin/articles">Articles</a></li>
-                        <li><a href="/admin/forums">Forums</a></li>
-                        <li><a href="/admin/comments">Comments</a></li>
-                        <li><a href="/admin/users">Users</a></li>
-                        <li><a href="/admin/logout">Log Out</a></li>
-                    </ul>
-                </nav>
+<div class="container-fluid">
+    <div class="row">
+        @section('admin-sidebar')
+            <div class="col-sm-4 col-md-3">
+                <aside class="admin-sidebar">
+                    <nav>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ action('AdminController@index') }}">Dashboard</a></li>
+                            <li><a href="{{ action('Admin\ArticleController@index') }}">Articles</a></li>
+                            <li><a href="#">Forums</a></li>
+                            <li><a href="#">Comments</a></li>
+                            <li><a href="{{ action('Admin\UserController@index') }}">Users</a></li>
+                            <li><a href="#">Log Out</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+        @show
+
+        <div class="col-sm-8 col-md-9">
+            <section class="admin-content">
+                @yield('content')
+            </section>
+
+            <aside class="copyright">
+                Copyright nonsense can go here
             </aside>
         </div>
-    @show
-
-    <div class="col-sm-8 col-md-9">
-        <section class="admin-content">
-            @yield('content')
-        </section>
-
-        <aside class="copyright">
-            Copyright nonsense can go here
-        </aside>
     </div>
 </div>
 
