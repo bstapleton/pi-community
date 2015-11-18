@@ -38,12 +38,12 @@
                         @endif
                     </td>
                     <td>
-                        {{ $user->created_at }}
+                        {{ date('F d, Y', strtotime($user->created_at)) }}
                     </td>
                     <td>
                         {{ $user->email }}
                     </td>
-                    <td>icons here here</td>
+                    <td>icons here</td>
                 </tr>
             @endforeach
             </tbody>
