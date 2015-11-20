@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\Group;
+use App\Helpers;
 use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,11 @@ use App\Http\Controllers\Controller;
  */
 class UserController extends Controller
 {
+    public function getIcon()
+    {
+        return 'user';
+    }
+
     /**
      * Default view when managing users through the admin interface
      *
@@ -33,10 +39,10 @@ class UserController extends Controller
     /**
      * Returns a view for editing various details about a specific user
      *
-     * @param $id Node ID to match when editing a user
+     * @param $name Node 'name' label to match when editing a user
      * @return $this
      */
-    public function edit($id)
+    public function edit($name)
     {
         $user = User::find($id);
         $groups = Group::all(['id', 'name']);
@@ -52,16 +58,16 @@ class UserController extends Controller
     /**
      * Updates the specified User node in the graph
      *
-     * @param $id Node ID to match when saving a User
+     * @param $name Node 'name' label to match when saving a User
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function update($name)
     {
         // Get the request params
         $userUpdate = Request::all();
 
         // Find the matching User node
-        $user = User::find($id);
+        $user = User::whereName($name)->first();
 
         // Find the matching Group with which this User is associated
         $newGroup = Group::find($userUpdate['group']);
@@ -100,10 +106,9 @@ class UserController extends Controller
     /**
      * Returns a view with all of the user's details
      */
-    public function show($id)
+    public function show($name)
     {
-        $user = User::find($id);
-
+        $user = User::whereName($name)->first();
 
         return view('admin.users.show', compact('user'));
     }

@@ -7,7 +7,26 @@
 @endsection
 
 @section('content')
-    <h1>{{ $user->nickname or $user->name }}</h1>
+    <header class="content-header">
+        <h1 class="content-header-title">
+            @for($i = 0; $i <= count(Request::segments()); $i++)
+                {{-- We don't care about the admin root --}}
+                @if(1 < $i)
+                    {{-- But we do care about the sub-section route, so gimme an icon --}}
+                    @if (2 == $i)
+                        <i class="fa fa-{{ adminIcon(Request::segment($i)) }}"></i>
+                    @endif
+                
+                    {{Request::segment($i)}}
+
+                    {{-- We also care about delimiting the breadcrumbs, so icon here too, please --}}
+                    @if($i < count(Request::segments()) & $i > 0)
+                        {!!'<i class="fa fa-angle-right"></i>'!!}
+                    @endif
+                @endif
+            @endfor
+        </h1>
+    </header>
 
     <p>{{ $user->introduction }}</p>
 

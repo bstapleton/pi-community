@@ -16,11 +16,14 @@ Route::get('admin', 'AdminController@index');
 Route::get('admin/articles', 'Admin\ArticleController@index');
 Route::get('admin/articles/create', 'Admin\ArticleController@create');
 Route::get('admin/articles/edit/{id}', 'Admin\ArticleController@edit');
-//Route::get('admin/users/', 'Admin\UserController@index');
-//Route::get('admin/users/edit/{id}', 'Admin\UserController@edit');
-//Route::get('admin/users/update/{id}', 'Admin\UserController@update');
 
-Route::resource('admin/users', 'Admin\UserController');
+Route::get('admin/users', 'Admin\UserController@index');
+Route::get('admin/users/show/{name}', 'Admin\UserController@show');
+Route::get('admin/users/edit/{name}', 'Admin\UserController@edit');
+Route::get('admin/users/update/{name}', 'Admin\UserController@update');
+Route::get('admin/users/destroy/{name}', 'Admin\UserController@destroy');
+
+//Route::resource('admin/users', 'Admin\UserController');
 
 // Page/content routes
 Route::get('/', 'ContentController@index');

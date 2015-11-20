@@ -30,7 +30,7 @@
             @foreach ($users as $user)
                 <tr>
                     <td>
-                        <a href="{{ route('admin.users.show', $user->id) }}">{{ $user->name }}</a>
+                        <a href="{{ action('Admin\UserController@show', [$user->name]) }}">{{ $user->name }}</a>
                     </td>
                     <td>
                         @if ($user->group)
@@ -44,8 +44,8 @@
                         {{ $user->email }}
                     </td>
                     <td>
-                        <a href="{{ route('admin.users.edit', $user->id) }}" title="Edit"><i class="fa fa-edit"></i></a>
-                        <a href="{{ route('admin.users.destroy', $user->id) }}" title="Disable"><i class="fa fa-ban"></i></a>
+                        <a href="{{ action('Admin\UserController@edit', [$user->name]) }}" title="Edit"><i class="fa fa-edit"></i></a>
+                        <a href="{{ action('Admin\UserController@destroy', [$user->name]) }}" title="Disable"><i class="fa fa-ban"></i></a>
                     </td>
                 </tr>
             @endforeach
