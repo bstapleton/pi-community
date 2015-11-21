@@ -5,16 +5,16 @@ function adminIcon($type) {
         case 'dashboard':
             return 'dashboard';
             break;
-        case 'article':
+        case 'articles':
             return 'pencil';
             break;
-        case 'page':
+        case 'pages':
             return 'page';
             break;
-        case 'forum':
+        case 'forums':
             return 'sticky-note';
             break;
-        case 'comment':
+        case 'comments':
             return 'comment';
             break;
         case 'users':

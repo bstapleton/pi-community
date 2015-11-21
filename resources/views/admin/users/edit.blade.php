@@ -7,8 +7,6 @@
 @endsection
 
 @section('content')
-    <h1>{{ $user->name }}</h1>
-
     {!! Form::model($user, [
         'method' => 'PATCH',
         'route' => ['admin.users.update', $user->id]

@@ -7,18 +7,6 @@
 @endsection
 
 @section('content')
-    <header>
-        <h1 class="content-title">
-            <i class="fa fa-pencil"></i> Articles
-            @for($i = 0; $i <= count(Request::segments()); $i++)
-                {{Request::segment($i)}}
-                @if($i < count(Request::segments()) & $i > 0)
-                    {!!'<i class="fa fa-angle-right"></i>'!!}
-                @endif
-            @endfor
-        </h1>
-    </header>
-
     <div class="content-list">
         <table class="table table-bordered">
             <thead>

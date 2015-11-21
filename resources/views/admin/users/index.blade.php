@@ -7,8 +7,6 @@
 @endsection
 
 @section('content')
-    users view
-
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
