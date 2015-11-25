@@ -15,11 +15,6 @@ use App\Http\Controllers\Controller;
  */
 class UserController extends Controller
 {
-    public function getIcon()
-    {
-        return 'user';
-    }
-
     /**
      * Default view when managing users through the admin interface
      *
@@ -44,7 +39,7 @@ class UserController extends Controller
      */
     public function edit($name)
     {
-        $user = User::find($id);
+        $user = User::whereName($name)->first();
         $groups = Group::all(['id', 'name']);
         $groupList = array();
 

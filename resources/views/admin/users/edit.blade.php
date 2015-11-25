@@ -9,7 +9,7 @@
 @section('content')
     {!! Form::model($user, [
         'method' => 'PATCH',
-        'route' => ['admin.users.update', $user->id]
+        'route' => ['admin.user.update']
     ]) !!}
 
     {{-- name Form Input --}}

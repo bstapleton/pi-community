@@ -20,10 +20,11 @@ Route::get('admin/articles/edit/{id}', 'Admin\ArticleController@edit');
 Route::get('admin/users', 'Admin\UserController@index');
 Route::get('admin/users/show/{name}', 'Admin\UserController@show');
 Route::get('admin/users/edit/{name}', 'Admin\UserController@edit');
-Route::get('admin/users/update/{name}', 'Admin\UserController@update');
-Route::get('admin/users/destroy/{name}', 'Admin\UserController@destroy');
-
-//Route::resource('admin/users', 'Admin\UserController');
+Route::patch('admin/users/update', [
+    'as' => 'admin.user.update',
+    'uses' => 'Admin\UserController@update'
+]);
+Route::delete('admin/users/destroy/{name}', 'Admin\UserController@destroy');
 
 // Page/content routes
 Route::get('/', 'ContentController@index');
