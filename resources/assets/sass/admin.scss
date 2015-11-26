@@ -43,10 +43,11 @@ a {
 }
 
 .admin-sidebar {
-    background: $dark-bg;
-    height: 100%;
+    background: $dark-bg url('../images/admin-sidebar-bg.png') left top repeat;
     width: 20%;
+    height: 100%;
     float: left;
+    position: fixed;
 
     .admin-nav {
         position: relative;
@@ -81,8 +82,9 @@ a {
 
 .admin-content {
     width: 80%;
+    margin-left: 20%;
     height: 100%;
-    float: right;
+    float: left;
     padding: 0 2rem;
     position: relative;
 
@@ -95,12 +97,6 @@ a {
         padding: 1rem 2rem;
         margin: 0 -2rem;
         background: darken($lightest, 5%);
-    }
-
-    .copyright {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
     }
 }
 

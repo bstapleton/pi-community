@@ -9,7 +9,7 @@
 <body>
 @section('admin-sidebar')
     <aside class="admin-sidebar">
-        <nav>
+        <nav class="admin-sidebar-content">
             <ul class="list-unstyled admin-nav">
                 <li><a href="{{ action('AdminController@index') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                 <li><a href="{{ action('Admin\ArticleController@index') }}"><i class="fa fa-pencil"></i> Articles</a></li>
