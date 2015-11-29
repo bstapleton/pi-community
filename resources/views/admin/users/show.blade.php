@@ -34,12 +34,7 @@
                     Country
                 </div>
                 <div class="widget-right">
-                    @foreach ($user->country as $country)
-                        {{ var_dump($country) }}
-                    @endforeach
-                    {{ var_dump($user->country) }}
-                    {{--{{ $user->country }}--}}
-                    {{--<img src="images/flags/{{ $country->flag }}" alt="{{ $user->country }} flag" /> {{ $user->country }}--}}
+                    {{ $user->country }}
                 </div>
             </div>
         @endif
