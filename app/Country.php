@@ -10,18 +10,19 @@ use Vinelab\NeoEloquent\Eloquent\Relations;
 
 
 /**
- * Class Group
- *
- * User group class
+ * Class Country
  *
  * @package App
  */
-class Group extends Model
+class Country extends Model
 {
-    protected $label = 'Group';
+    protected $label = 'Country';
 
     protected $fillable = array(
         'name',
+        'citizenship',
+        'flag',
+        'full_name'
     );
 
     /**
@@ -29,6 +30,6 @@ class Group extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\User', 'MEMBER_OF');
+        return $this->hasOne('App\User', 'HAS_NATIONALITY');
     }
 }

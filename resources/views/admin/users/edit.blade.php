@@ -9,7 +9,7 @@
 @section('content')
     {!! Form::model($user, [
         'method' => 'PATCH',
-        'route' => ['admin.user.update']
+        'route' => ['admin.user.update', $user->name]
     ]) !!}
 
     {{-- name Form Input --}}
@@ -22,6 +22,12 @@
     <div class="form-group">
         {!! Form::label('group', 'Authentication Group:') !!}
         {!! Form::select('group', $groupList, ['class' => 'form-control']) !!}
+    </div>
+
+    {{-- country Form Input --}}
+    <div class="form-group">
+        {!! Form::label('country', 'Authentication Group:') !!}
+        {!! Form::select('country', $countryList, ['class' => 'form-control']) !!}
     </div>
 
     {{-- email Form Input --}}

@@ -60,4 +60,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasOne('App\Group', 'MEMBER_OF');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function country()
+    {
+        return $this->hasOne('App\Country', 'HAS_NATIONALITY');
+    }
 }

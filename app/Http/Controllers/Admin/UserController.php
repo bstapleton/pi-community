@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\Group;
+use App\Country;
 use App\Helpers;
 use Request;
 use App\Http\Requests;
@@ -40,6 +41,7 @@ class UserController extends Controller
     public function edit($name)
     {
         $user = User::whereName($name)->first();
+
         $groups = Group::all(['id', 'name']);
         $groupList = array();
 
@@ -47,7 +49,16 @@ class UserController extends Controller
             $groupList[$group->id] = $group->name;
         }
 
-        return view('admin.users.edit', compact('user'))->with('groupList', $groupList);
+        $countries = Country::all(['id', 'name']);
+        $countryList = array();
+
+        foreach ($countries as $country) {
+            $countryList[$country->id] = $country->name;
+        }
+
+        return view('admin.users.edit', compact('user'))
+            ->with('groupList', $groupList)
+            ->with('countryList', $countryList);
     }
 
     /**
@@ -73,6 +84,14 @@ class UserController extends Controller
             $user->group()->detach();
             $user->group()->save($newGroup);
         }
+
+        // Find the matching Country with which this User is associated
+        $newCountry = Country::find($userUpdate['country']);
+
+        // Detach the previous nationality relation, and save the new one
+        // TODO: don't detach and save unless it's changed!
+        $user->country()->detach();
+        $user->country()->save($newCountry);
 
         // Update the User details
         $user->update($userUpdate);
@@ -100,16 +119,22 @@ class UserController extends Controller
 
     /**
      * Returns a view with all of the user's details
+     *
+     * @param $name Node 'name' label to match when showing a User
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($name)
     {
         $user = User::whereName($name)->first();
 
-        return view('admin.users.show', compact('user'));
+        // TODO: This returns a relationship, which is handy, but I cannot fetch the name, only the ID - attempts to modify this behaviour have been unsuccessful thus far.
+        $country = $user->country();
+
+        return view('admin.users.show', compact('user'))->with('country', $country);
     }
 
     /**
-     * Destroys the user node. -probably- not relevant for this model
+     * Destroys the user node. -probably- not relevant for the user model
      */
     public function destroy()
     {
