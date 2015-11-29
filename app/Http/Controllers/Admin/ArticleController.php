@@ -15,8 +15,15 @@ class ArticleController extends Controller
 {
     protected $request;
 
+    /**
+     * ArticleController constructor.
+     * @param Request $request
+     */
     public function __construct(Request $request)
     {
+        // Restrict access to authenticated users
+        $this->middleware('auth');
+
         $this->request = $request;
     }
 

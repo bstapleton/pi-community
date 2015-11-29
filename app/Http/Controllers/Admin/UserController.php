@@ -17,6 +17,15 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        // Restrict access to authenticated users
+        $this->middleware('auth');
+    }
+
+    /**
      * Default view when managing users through the admin interface
      *
      * @return \Illuminate\View\View
