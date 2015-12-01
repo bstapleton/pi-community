@@ -17,7 +17,7 @@
                 <li><a href="#"><i class="fa fa-sticky-note"></i> Forums</a></li>
                 <li><a href="#"><i class="fa fa-comment"></i> Comments</a></li>
                 <li><a href="{{ action('Admin\UserController@index') }}"><i class="fa fa-users"></i> Users</a></li>
-                <li class="sign-out"><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                <li class="sign-out"><a href="#"><i class="fa fa-sign-out"></i> Log Out ({{ Auth::user()->name }})</a></li>
             </ul>
         </nav>
     </aside>
