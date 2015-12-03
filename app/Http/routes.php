@@ -15,6 +15,10 @@
 Route::get('admin', 'AdminController@index');
 Route::get('admin/articles', 'Admin\ArticleController@index');
 Route::get('admin/articles/create', 'Admin\ArticleController@create');
+Route::post('admin/articles/store', [
+    'as' => 'admin.article.store',
+    'uses' => 'Admin\ArticleController@store'
+]);
 Route::get('admin/articles/edit/{id}', 'Admin\ArticleController@edit');
 
 Route::get('admin/users', 'Admin\UserController@index');

@@ -6,7 +6,6 @@ use App\Content;
 use App\User;
 use APP\Template;
 use Vinelab\NeoEloquent\Eloquent\Model;
-use Vinelab\NeoEloquent\Eloquent\Relations;
 
 
 class Article extends Content
@@ -14,16 +13,11 @@ class Article extends Content
     protected $label = 'Article';
 
     protected $fillable = array(
+        'name',
+        'published_at',
+        'content',
         'introduction',
     );
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function user()
-    {
-        return $this->hasOne('App\User', 'CREATED_BY');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -31,5 +25,21 @@ class Article extends Content
     public function template()
     {
         return $this->hasOne('App\Template', 'USES');
+    }
+
+    /**
+     * @return \Vinelab\NeoEloquent\Eloquent\Relations\HasMany
+     */
+    public function image()
+    {
+        return $this->hasMany('App\Image', 'INCLUDES');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function gallery()
+    {
+        return $this->hasOne('App\Gallery', 'INCLUDES');
     }
 }

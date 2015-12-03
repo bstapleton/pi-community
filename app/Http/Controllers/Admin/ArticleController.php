@@ -1,11 +1,14 @@
 <?php
 
-namespace app\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Article;
+//use Request;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+//use App\Http\Controllers\Auth;
 
 /**
  * Class ArticleController
@@ -72,6 +75,14 @@ class ArticleController extends Controller
      */
     public function store()
     {
-        return view('admin.articles.store', compact('article'));
+        $input = $this->request->all();
+        $article = Article::create($input);
+
+        $author = User::find(\Auth::user()->id);
+        $article->user()->save($author);
+
+        return redirect()
+            ->action('Admin\ArticleController@index')
+            ->with('status', 'Article has been saved.');
     }
 }

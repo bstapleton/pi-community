@@ -7,6 +7,13 @@
 @endsection
 
 @section('content')
+
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
     <div class="content-list">
         <table class="table table-bordered">
             <thead>
@@ -23,12 +30,12 @@
             <tbody>
             @foreach ($articles as $article)
                 <tr>
-                    <td><a href="{{ action('Admin\ArticleController@edit', [$article->id]) }}">{{ $article->title }}</a></td>
+                    <td><a href="{{ action('Admin\ArticleController@edit', [$article->id]) }}">{{ $article->name }}</a></td>
                     <td @if (!$article->introduction)class="error"@endif>
                         {{ $article->introduction or 'You missed something' }}
                     </td>
                     <td>
-                        {{ $article->template->title }}
+                        {{--{{ $article->template->name }}--}}
                     </td>
                     <td>
                         {{ $article->user->name }}
