@@ -65,6 +65,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
+        $article = Article::find($id);
+
         return view('admin.articles.edit', compact('article'));
     }
 
@@ -84,5 +86,22 @@ class ArticleController extends Controller
         return redirect()
             ->action('Admin\ArticleController@index')
             ->with('status', 'Article has been saved.');
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id)
+    {
+        $article = Article::find($id);
+
+        // TODO: here we are setting the article editor to the current user - we need to do some stuff to establish if they have the access to be an official content editor before this is allowed
+        $editor = User::find(\Auth::user()->id);
+        $article->user('editor')->save($editor);
+
+        return redirect()
+            ->action('Admin\ArticleController@index')
+            ->with('status', 'Article has been updated.');
     }
 }

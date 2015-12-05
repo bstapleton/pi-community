@@ -20,6 +20,10 @@ Route::post('admin/articles/store', [
     'uses' => 'Admin\ArticleController@store'
 ]);
 Route::get('admin/articles/edit/{id}', 'Admin\ArticleController@edit');
+Route::patch('admin/articles/update/{id}', [
+    'as' => 'admin.article.update',
+    'uses' => 'Admin\ArticleController@update'
+]);
 
 Route::get('admin/users', 'Admin\UserController@index');
 Route::get('admin/users/show/{name}', 'Admin\UserController@show');

@@ -14,11 +14,16 @@ class Content extends Model
     );
 
     /**
+     * @param string $type relationship edge we want to reference
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function user()
+    public function user($type = 'creator')
     {
-        return $this->hasOne('App\User', 'CREATED_BY');
+        if ('creator' == $type) {
+            return $this->hasOne('App\User', 'CREATED_BY');
+        }
+        elseif ('editor' == $type) {
+            return $this->hasOne('App\User', 'EDITED_BY');
+        }
     }
-    // TODO: all content is 'created by' someone, but how do I also have a 'edited by' relationship against the same model?
 }
